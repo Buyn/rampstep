@@ -1,3 +1,7 @@
 *.*.sw?
 Billd
 
+*.bak
+*.hex
+*.pdsbak
+.ssh
