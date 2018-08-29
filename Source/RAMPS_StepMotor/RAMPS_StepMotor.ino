@@ -23,7 +23,7 @@ int delayms=100;
 // runs once when you press reset or power the board
 void setup() {
   // initialize digital pin 13 as an output.
-  pinMode(13, OUTPUT);
+  pinMode(10, OUTPUT);
   pinMode(12, OUTPUT);
   pinMode(11, INPUT);
   //pinMode(A2, OUTPUT);
@@ -55,12 +55,12 @@ void loop() {
  */
 void step() {
   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(13, HIGH);   
+  digitalWrite(10, HIGH);   
   // wait for a second
   delay(1);             
   //delayMicroseconds(10);
   // turn the LED off by making the voltage LOW
-  digitalWrite(13, LOW);}
+  digitalWrite(10, LOW);}
   //delay(1);              // wait for a second
   //delayMicroseconds(10);
 /*}}}*/
