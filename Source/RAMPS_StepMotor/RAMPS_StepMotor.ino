@@ -11,14 +11,12 @@
   modified 8 May 2014
   by Scott Fitzgerald
  *}}}*/
-/*Constants*{{{
-//experimrnting with git
+/*   Constants   *{{{
 //}}}*/
 /*Global Values {{{*/
 int sensorValue =100;
 int delayms=100;
 /*}}}*/
-
 // the setup function {{{
 // runs once when you press reset or power the board
 void setup() {
@@ -29,8 +27,8 @@ void setup() {
   //pinMode(A2, OUTPUT);
   //pinMode(A3, INPUT);
   Serial.begin(9600);}
+  Serial.println("Setup End2");
 //}}}
-
 // the loop function  {{{
 // runs over and over again forever
 void loop() {
@@ -48,19 +46,18 @@ void loop() {
   delayms=sensorValue/1;
   delay(delayms);              // wait for a second
   //delay(40);
-  step();
-  Serial.println("End");
+  step(10);
 }/*}}}*/
 /* Step function  {{{
  */
-void step() {
+void step(int step_pin) {
   // turn the LED on (HIGH is the voltage level)
-  digitalWrite(10, HIGH);   
+  digitalWrite(step_pin, HIGH);   
   // wait for a second
   delay(1);             
-  //delayMicroseconds(10);
+  //delayMicroseconds(step_pin);
   // turn the LED off by making the voltage LOW
-  digitalWrite(10, LOW);}
+  digitalWrite(step_pin, LOW);}
   //delay(1);              // wait for a second
-  //delayMicroseconds(10);
+  //delayMicroseconds(step_pin);
 /*}}}*/
