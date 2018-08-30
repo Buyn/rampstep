@@ -12,11 +12,13 @@
   by Scott Fitzgerald
  *}}}*/
 /*   Constants   *{{{
+#define ANALOG_P				A3
+
 #define X_STEP_PIN         10
 #define X_DIR_PIN          12
 #define X_ENABLE_PIN       38
-#define X_MIN_PIN           3
-#define X_MAX_PIN           2
+#define X_MIN_PIN          11
+#define X_MAX_PIN           9
 
 #define Y_STEP_PIN         60
 #define Y_DIR_PIN          61
@@ -60,11 +62,11 @@ int delayms=100;
 // runs once when you press reset or power the board
 void setup() {
   // initialize digital pin 13 as an output.
-  pinMode(10, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(11, INPUT);
+  pinMode(X_STEP_PIN, OUTPUT);
+  pinMode(X_DIR_PIN, OUTPUT);
+  pinMode(X_MIN_PIN, INPUT);
   //pinMode(A2, OUTPUT);
-  //pinMode(A3, INPUT);
+  //pinMode(ANALOG_P, INPUT);
   Serial.begin(9600);}
   Serial.println("Setup End2");
 //}}}
@@ -72,17 +74,15 @@ void setup() {
 // runs over and over again forever
 void loop() {
   //Serial.println(sensorValue);
-  sensorValue = analogRead(A3);
-  analogWrite(A2, sensorValue);
-  analogWrite(A5, 3000);
-  if (digitalRead(11)>LOW){
-    digitalWrite(12, LOW);
+  sensorValue = analogRead(ANALOG_P);
+  if (digitalRead(X_MIN_PIN)>LOW){
+    digitalWrite(X_DIR_PIN, LOW);
   }else{
-    digitalWrite(12, HIGH);
+    digitalWrite(X_DIR_PIN, HIGH);
   }
   delayms=sensorValue/1;
   delay(delayms);              // wait for a second
-  step(10);
+  step(X_STEP_PIN);
 }/*}}}*/
 /* Step function  {{{
  */
@@ -94,6 +94,4 @@ void step(int step_pin) {
   //delayMicroseconds(step_pin);
   // turn the LED off by making the voltage LOW
   digitalWrite(step_pin, LOW);}
-  //delay(1);              // wait for a second
-  //delayMicroseconds(step_pin);
 /*}}}*/
