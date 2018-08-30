@@ -1,4 +1,7 @@
-/*  Blink C Programm{{{ 
+/*  Blink C Programm {{{ 
+ *  todo
+ *  output value of potencenometr
+ *  refactor oneprint
   Turns on an LED on for one second, then off for one second, repeatedly.
 
   Most Arduinos have an on-board LED you can control. On the Uno and
@@ -10,7 +13,7 @@
 
   modified 8 May 2014
   by Scott Fitzgerald
- *}}}*/
+ * }}} */
 //   Constants   {{{
 #define ANALOG_P				A3
 
@@ -57,6 +60,7 @@
 /*Global Values {{{*/
 int sensorValue =100;
 int delayms=100;
+String last_text ="";
 /*}}}*/
 // the setup function {{{
 // runs once when you press reset or power the board
@@ -67,13 +71,15 @@ void setup() {
   pinMode(X_MIN_PIN, INPUT);
   //pinMode(A2, OUTPUT);
   //pinMode(ANALOG_P, INPUT);
-  Serial.begin(9600);}
+  Serial.begin(9600);
+  oneprint("End3");
+}
 //}}}
 // the loop function  {{{
 // runs over and over again forever
 void loop() {
-  //Serial.println(sensorValue);
   sensorValue = analogRead(ANALOG_P);
+  oneprint(String(sensorValue));
   if (digitalRead(X_MIN_PIN)>LOW){
     digitalWrite(X_DIR_PIN, LOW);
   }else{
@@ -82,8 +88,15 @@ void loop() {
   delayms=sensorValue/1;
   delay(delayms);              // wait for a second
   step(X_STEP_PIN);
-  Serial.println("Setup End2");
+  //oneprint("End3");
 }/*}}}*/
+/*   oneprint   * {{{
+ *   Printin text onli if its new
+*/
+void oneprint(String text){
+	if ( text.equals ( last_text ) ) return ;
+	last_text = text;
+	Serial.println(text);} //}}}
 /* Step function  {{{
  */
 void step(int step_pin) {
