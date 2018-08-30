@@ -11,7 +11,7 @@
   modified 8 May 2014
   by Scott Fitzgerald
  *}}}*/
-/*   Constants   *{{{
+//   Constants   {{{
 #define ANALOG_P				A3
 
 #define X_STEP_PIN         10
@@ -53,7 +53,7 @@
 #define HEATER_1_PIN       8
 #define TEMP_0_PIN          13   // ANALOG NUMBERING
 #define TEMP_1_PIN          14   // ANALOG NUMBERING
-//}}}*/
+//}}}
 /*Global Values {{{*/
 int sensorValue =100;
 int delayms=100;
@@ -68,7 +68,6 @@ void setup() {
   //pinMode(A2, OUTPUT);
   //pinMode(ANALOG_P, INPUT);
   Serial.begin(9600);}
-  Serial.println("Setup End2");
 //}}}
 // the loop function  {{{
 // runs over and over again forever
@@ -83,6 +82,7 @@ void loop() {
   delayms=sensorValue/1;
   delay(delayms);              // wait for a second
   step(X_STEP_PIN);
+  Serial.println("Setup End2");
 }/*}}}*/
 /* Step function  {{{
  */
