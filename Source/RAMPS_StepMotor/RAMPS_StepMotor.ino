@@ -1,7 +1,4 @@
 /*  Blink C Programm {{{ 
- *  todo
- *  output value of potencenometr
- *  refactor oneprint
   Turns on an LED on for one second, then off for one second, repeatedly.
 
   Most Arduinos have an on-board LED you can control. On the Uno and
@@ -69,10 +66,9 @@ void setup() {
   pinMode(X_STEP_PIN, OUTPUT);
   pinMode(X_DIR_PIN, OUTPUT);
   pinMode(X_MIN_PIN, INPUT);
-  //pinMode(A2, OUTPUT);
-  //pinMode(ANALOG_P, INPUT);
+  pinMode(ANALOG_P, INPUT);
   Serial.begin(9600);
-  oneprint("End3");
+  oneprint("Setup End3");
 }
 //}}}
 // the loop function  {{{
